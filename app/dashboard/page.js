@@ -7,7 +7,7 @@ const courses = ['Course 1', 'Course 2', 'Course 3']; // Replace with actual cou
 
 export default function Dashboard() {
   return (
-    <Container maxWidth="md" sx={{ backgroundColor: '#000000', color: '#A367B1' }}>
+    <Container maxWidth="md" sx={{ backgroundColor: '#ffffff', color: '#A367B1' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Dashboard
       </Typography>
