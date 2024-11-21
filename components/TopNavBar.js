@@ -1,10 +1,7 @@
 // components/TopNavBar.js
 import React from 'react';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 
 export default function TopNavBar() {
   const router = useRouter();
@@ -18,7 +15,7 @@ export default function TopNavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color="primary">
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           LMS

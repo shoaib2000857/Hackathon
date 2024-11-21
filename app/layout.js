@@ -4,8 +4,8 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import TopNavBar from '@/componenets/TopNavBar';
-import SideNavBar from '@/componenets/SideNavBar';
+import TopNavBar from '@/components/TopNavBar';
+import SideNavBar from '@/components/SideNavBar';
 import '@/app/globals.css';
 
 const theme = createTheme();

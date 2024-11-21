@@ -1,8 +1,8 @@
 // app/signup/page.js
 'use client';
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
 import { Container, Typography, TextField, Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 export default function Signup() {
@@ -21,7 +21,7 @@ export default function Signup() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ backgroundColor: '#000000', color: '#A367B1' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Signup
       </Typography>
@@ -32,6 +32,8 @@ export default function Signup() {
         margin="normal"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        InputLabelProps={{ style: { color: '#A367B1' } }}
+        InputProps={{ style: { color: '#A367B1' } }}
       />
       <TextField
         label="Password"
@@ -41,6 +43,8 @@ export default function Signup() {
         margin="normal"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        InputLabelProps={{ style: { color: '#A367B1' } }}
+        InputProps={{ style: { color: '#A367B1' } }}
       />
       <Button variant="contained" color="primary" onClick={handleSignup}>
         Signup

@@ -1,8 +1,9 @@
 // app/login/page.js
 'use client';
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
 import { Container, Typography, TextField, Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export default function Login() {
   const [username, setUsername] = React.useState('');
@@ -10,35 +11,17 @@ export default function Login() {
   const router = useRouter();
 
   const handleLogin = async () => {
-    if (username && password) {
-      try {
-        const response = await fetch('/api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          localStorage.setItem('isLoggedIn', 'true');
-          router.push('/dashboard');
-        } else {
-          alert(data.message);
-        }
-      } catch (error) {
-        console.error('Error logging in:', error);
-        alert('An error occurred. Please try again.');
-      }
-    } else {
-      alert('Please enter both username and password');
+    try {
+      await axios.post('/api/login', { username, password });
+      router.push('/dashboard');
+    } catch (error) {
+      console.error('Login failed:', error);
+      alert('Login failed. Please try again.');
     }
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ backgroundColor: '#000000', color: '#A367B1' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Login
       </Typography>
@@ -49,6 +32,8 @@ export default function Login() {
         margin="normal"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        InputLabelProps={{ style: { color: '#A367B1' } }}
+        InputProps={{ style: { color: '#A367B1' } }}
       />
       <TextField
         label="Password"
@@ -58,6 +43,8 @@ export default function Login() {
         margin="normal"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        InputLabelProps={{ style: { color: '#A367B1' } }}
+        InputProps={{ style: { color: '#A367B1' } }}
       />
       <Button variant="contained" color="primary" onClick={handleLogin}>
         Login

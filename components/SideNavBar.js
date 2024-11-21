@@ -1,10 +1,6 @@
 // components/SideNavBar.js
 import React from 'react';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Button from '@mui/material/Button';
+import { Drawer, List, ListItem, ListItemText, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 export default function SideNavBar({ onLogout }) {
@@ -15,7 +11,7 @@ export default function SideNavBar({ onLogout }) {
   };
 
   return (
-    <Drawer variant="permanent" anchor="left">
+    <Drawer variant="permanent" anchor="left" sx={{ '& .MuiDrawer-paper': { backgroundColor: '#000000', color: '#A367B1' } }}>
       <List>
         <ListItem button onClick={handleDashboard}>
           <ListItemText primary="Dashboard" />
@@ -30,7 +26,7 @@ export default function SideNavBar({ onLogout }) {
           <ListItemText primary="Chat" />
         </ListItem>
       </List>
-      <Button onClick={onLogout} style={{ margin: '20px' }}>
+      <Button onClick={onLogout} style={{ margin: '20px', color: '#A367B1' }}>
         Logout
       </Button>
     </Drawer>
