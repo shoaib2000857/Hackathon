@@ -32,7 +32,7 @@ export default function Login() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ backgroundColor: '#000000', color: '#A367B1' }}>
+    <Container maxWidth="sm" sx={{ backgroundColor: '#ffffff', color: '#A367B1' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Login
       </Typography>

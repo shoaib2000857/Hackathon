@@ -1,10 +1,11 @@
-// components/SideNavBar.js
-import React from 'react';
+import * as React from 'react';
 import { Drawer, List, ListItem, ListItemText, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import { useTheme } from '@mui/material/styles';
 
 export default function SideNavBar({ onLogout }) {
   const router = useRouter();
+  const theme = useTheme();
 
   const handleDashboard = () => {
     router.push('/dashboard');
@@ -14,25 +15,38 @@ export default function SideNavBar({ onLogout }) {
     router.push('/chatbot');
   };
 
+  const handleNotes = () => {
+    router.push('/notes');
+  };
+
   return (
-    <Drawer variant="permanent" anchor="left" sx={{ '& .MuiDrawer-paper': { backgroundColor: '#000000', color: '#A367B1' } }}>
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: 240,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: 240,
+          boxSizing: 'border-box',
+          backgroundColor: theme.palette.primary.main,
+          color: '#ffffff',
+        },
+      }}
+    >
       <List>
         <ListItem button onClick={handleDashboard}>
-          <ListItemText primary="Dashboard" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Profile" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Timetable" />
+          <ListItemText primary="Dashboard" sx={{ color: '#ffffff' }} />
         </ListItem>
         <ListItem button onClick={handleChatbot}>
-          <ListItemText primary="Chatbot" />
+          <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
+        </ListItem>
+        <ListItem button onClick={handleNotes}>
+          <ListItemText primary="Notes" sx={{ color: '#ffffff' }} />
+        </ListItem>
+        <ListItem button onClick={onLogout}>
+          <ListItemText primary="Logout" sx={{ color: '#ffffff' }} />
         </ListItem>
       </List>
-      <Button onClick={onLogout} style={{ margin: '20px', color: '#A367B1' }}>
-        Logout
-      </Button>
     </Drawer>
   );
 }
