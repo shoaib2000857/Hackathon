@@ -1,7 +1,9 @@
+// app/signup/page.js
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { Container, Typography, TextField, Button } from '@mui/material';
+import axios from 'axios';
 
 export default function Signup() {
   const [username, setUsername] = React.useState('');
@@ -9,30 +11,12 @@ export default function Signup() {
   const router = useRouter();
 
   const handleSignup = async () => {
-    if (username && password) {
-      try {
-        const response = await fetch('/api/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          alert('Signup successful');
-          router.push('/login');
-        } else {
-          alert(data.message);
-        }
-      } catch (error) {
-        console.error('Error signing up:', error);
-        alert('An error occurred. Please try again.');
-      }
-    } else {
-      alert('Please enter both username and password');
+    try {
+      await axios.post('/api/signup', { username, password });
+      router.push('/login');
+    } catch (error) {
+      console.error('Signup failed:', error);
+      alert('Signup failed. Please try again.');
     }
   };
 
