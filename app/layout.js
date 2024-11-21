@@ -8,7 +8,27 @@ import TopNavBar from '@/components/TopNavBar';
 import SideNavBar from '@/components/SideNavBar';
 import '@/app/globals.css';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#A367B1',
+    },
+    secondary: {
+      main: '#A367B1',
+    },
+    background: {
+      default: '#000000',
+    },
+    text: {
+      primary: '#A367B1',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#A367B1',
+    },
+  },
+});
 
 export default function RootLayout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
