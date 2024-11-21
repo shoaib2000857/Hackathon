@@ -5,7 +5,7 @@ import Student from '/models/Student';
 import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
-  const { username, password } = await req.json();
+  const { username, password, courses } = await req.json();
 
   try {
     await connectToDatabase();
@@ -15,6 +15,7 @@ export async function POST(req) {
     const student = new Student({
       username,
       password: hashedPassword,
+      courses, // Add courses to the student document
     });
 
     await student.save();
