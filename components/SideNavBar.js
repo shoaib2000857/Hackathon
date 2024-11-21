@@ -10,6 +10,10 @@ export default function SideNavBar({ onLogout }) {
     router.push('/dashboard');
   };
 
+  const handleChatbot = () => {
+    router.push('/chatbot');
+  };
+
   return (
     <Drawer variant="permanent" anchor="left" sx={{ '& .MuiDrawer-paper': { backgroundColor: '#000000', color: '#A367B1' } }}>
       <List>
@@ -22,8 +26,8 @@ export default function SideNavBar({ onLogout }) {
         <ListItem button>
           <ListItemText primary="Timetable" />
         </ListItem>
-        <ListItem button>
-          <ListItemText primary="Chat" />
+        <ListItem button onClick={handleChatbot}>
+          <ListItemText primary="Chatbot" />
         </ListItem>
       </List>
       <Button onClick={onLogout} style={{ margin: '20px', color: '#A367B1' }}>
