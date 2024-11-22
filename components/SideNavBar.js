@@ -46,6 +46,12 @@ export default function SideNavBar({ onLogout }) {
         <ListItem button onClick={onLogout}>
           <ListItemText primary="Logout" sx={{ color: '#ffffff' }} />
         </ListItem>
+        <ListItem button onClick={handleNotes}>
+          <ListItemText primary="Notes" />
+        </ListItem>
+        <ListItem button onClick={onLogout}>
+          <ListItemText primary="Logout" />
+        </ListItem>
       </List>
     </Drawer>
   );
