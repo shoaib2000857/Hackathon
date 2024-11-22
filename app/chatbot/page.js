@@ -5,11 +5,13 @@ import { Container, Typography, TextField, Button, List, ListItem, ListItemText,
 import { AttachFile } from '@mui/icons-material';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
+import { useTheme } from '@mui/material/styles';
 
 export default function Chatbot() {
   const [messages, setMessages] = React.useState([]);
   const [input, setInput] = React.useState('');
   const [file, setFile] = React.useState(null);
+  const theme = useTheme();
 
   const handleSendMessage = async () => {
     if (input.trim() === '' && !file) return;
@@ -36,8 +38,8 @@ export default function Chatbot() {
   };
 
   return (
-    <Container maxWidth="md" sx={{ backgroundColor: '#000000', color: '#A367B1', padding: '20px', borderRadius: '8px' }}>
-      <Typography variant="h4" component="h1" gutterBottom>
+    <Container maxWidth="md" sx={{ backgroundColor: '#f4f4f4', color: theme.palette.text.primary, padding: '20px', borderRadius: '8px' }}>
+      <Typography variant="h4" component="h1" gutterBottom sx={{ color: theme.palette.text.primary }}>
         Chatbot
       </Typography>
       <List sx={{ maxHeight: '400px', overflow: 'auto', backgroundColor: '#1a1a1a', borderRadius: '8px', padding: '10px' }}>
@@ -47,13 +49,13 @@ export default function Chatbot() {
               <ListItemText
                 primary={<ReactMarkdown>{message.text}</ReactMarkdown>}
                 secondary={message.file ? `File: ${message.file}` : null}
-                sx={{ backgroundColor: message.isBot ? '#333333' : '#444444', borderRadius: '8px', padding: '10px', color: '#A367B1' }}
+                sx={{ backgroundColor: message.isBot ? '#ffffff' : '#ffffff', borderRadius: '8px', padding: '10px', color: '#ffffff' }}
               />
             ) : (
               <ListItemText
                 primary={message.text}
                 secondary={message.file ? `File: ${message.file}` : null}
-                sx={{ backgroundColor: message.isBot ? '#333333' : '#444444', borderRadius: '8px', padding: '10px', color: '#A367B1' }}
+                sx={{ backgroundColor: message.isBot ? '#ffffff' : '#ffffff', borderRadius: '8px', padding: '10px', color: '#ffffff' }}
               />
             )}
           </ListItem>
@@ -66,11 +68,11 @@ export default function Chatbot() {
         margin="normal"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        InputLabelProps={{ style: { color: '#A367B1' } }}
+        InputLabelProps={{ style: { color: theme.palette.text.primary } }}
         InputProps={{
-          style: { color: '#A367B1' },
+          style: { color: theme.palette.text.primary },
           endAdornment: (
-            <IconButton component="label" style={{ color: '#A367B1' }}>
+            <IconButton component="label" style={{ color: theme.palette.text.primary }}>
               <AttachFile />
               <input type="file" hidden onChange={handleFileChange} />
             </IconButton>

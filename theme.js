@@ -4,21 +4,21 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#A367B1',
+      main: '#ff7c00', // Orange color
     },
     secondary: {
       main: '#A367B1',
     },
     background: {
-      default: '#000000',
+      default: '#ffffff',
     },
     text: {
-      primary: '#A367B1',
+      primary: '#333333',
     },
   },
   typography: {
     allVariants: {
-      color: '#A367B1',
+      color: '#333333',
     },
   },
 });

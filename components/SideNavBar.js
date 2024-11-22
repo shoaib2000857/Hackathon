@@ -1,5 +1,6 @@
+// components/SideNavBar.js
 import * as React from 'react';
-import { Drawer, List, ListItem, ListItemText, Button } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@mui/material/styles';
 
@@ -45,12 +46,6 @@ export default function SideNavBar({ onLogout }) {
         </ListItem>
         <ListItem button onClick={onLogout}>
           <ListItemText primary="Logout" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem button onClick={handleNotes}>
-          <ListItemText primary="Notes" />
-        </ListItem>
-        <ListItem button onClick={onLogout}>
-          <ListItemText primary="Logout" />
         </ListItem>
       </List>
     </Drawer>

@@ -1,0 +1,138 @@
+/* styles/globals.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+}
+
+.login-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.logo img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background: #ff7c00; /* Orange color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #e66b00; /* Darker orange color */
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+header {
+    background-color: #ff7c00; /* Orange color */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header .logo {
+    width: 80px;
+    height: auto;
+}
+
+main {
+    padding: 20px;
+}
+
+.announcements {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.subjects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.subject-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.subject-card h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.subject-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.subject-card li {
+    margin-bottom: 5px;
+}
+
+.subject-card a {
+    text-decoration: none;
+    color: #ff7c00; /* Orange color */
+}
+
+.subject-card a:hover {
+    text-decoration: underline;
+}
+
+.task-manager {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.task-manager ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-manager li {
+    margin-bottom: 10px;
+}

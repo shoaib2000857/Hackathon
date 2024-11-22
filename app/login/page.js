@@ -1,80 +1,65 @@
 // app/login/page.js
 'use client';
 import * as React from 'react';
-import { Container, Typography, TextField, Button, IconButton, InputAdornment } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Container, Typography, TextField, Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 export default function Login() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [showPassword, setShowPassword] = React.useState(false);
   const router = useRouter();
 
-  const handleLogin = async () => {
-    try {
-      await axios.post('/api/login', { username, password });
-      localStorage.setItem('isLoggedIn', 'true');
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    if (!username || !password) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    // Simulate login (replace with actual server validation if needed)
+    if (username === 'student' && password === 'password123') {
+      localStorage.setItem('username', username);
       router.push('/dashboard');
-    } catch (error) {
-      console.error('Login failed:', error);
-      alert('Login failed. Please try again.');
+    } else {
+      alert('Invalid username or password. Please try again.');
     }
   };
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
   return (
-    <Container maxWidth="sm" sx={{ backgroundColor: '#ffffff', color: '#A367B1' }}>
+    <div className="login-container">
+      <div className="logo">
+        <img src="/logo.png" alt="Maargadarshak Logo" />
+      </div>
       <Typography variant="h4" component="h1" gutterBottom>
-        Login
+        Welcome to Maargadarshak
       </Typography>
-      <TextField
-        label="Username"
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        InputLabelProps={{ style: { color: '#A367B1' } }}
-        InputProps={{ style: { color: '#A367B1' } }}
-      />
-      <TextField
-        label="Password"
-        type={showPassword ? 'text' : 'password'}
-        variant="outlined"
-        fullWidth
-        margin="normal"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        InputLabelProps={{ style: { color: '#A367B1' } }}
-        InputProps={{
-          style: { color: '#A367B1' },
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-                style={{ color: '#A367B1' }}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <Button variant="contained" color="primary" onClick={handleLogin}>
-        Login
-      </Button>
-    </Container>
+      <form onSubmit={handleLogin}>
+        <TextField
+          label="Username or Email"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Login
+        </Button>
+        <a href="#" className="forgot-password">
+          Forgot Password?
+        </a>
+      </form>
+    </div>
   );
 }

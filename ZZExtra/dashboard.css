@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #e85f05;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header .logo {
+    width: 80px;
+    height: auto;
+}
+
+main {
+    padding: 20px;
+}
+
+.announcements {
+    background-color: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.subjects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.subject-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.subject-card h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.subject-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.subject-card li {
+    margin-bottom: 5px;
+}
+
+.subject-card a {
+    text-decoration: none;
+    color: #e85f05;
+}
+
+.subject-card a:hover {
+    text-decoration: underline;
+}
+
+.task-manager {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.task-manager ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-manager li {
+    margin-bottom: 10px;
+}
