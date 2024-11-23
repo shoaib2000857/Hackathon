@@ -1,64 +1,56 @@
-// app/notes/upload.js
+// app/notes/upload/page.js
 'use client';
 import * as React from 'react';
-import { Container, Typography, TextField, Button, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Container, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 
 export default function UploadNote() {
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
   const [course, setCourse] = React.useState('');
+  const [fileUrl, setFileUrl] = React.useState('');
   const [courses, setCourses] = React.useState([]);
-  const [username, setUsername] = React.useState(''); // Assume username is fetched from context or similar
-  const [file, setFile] = React.useState(null);
+  const router = useRouter();
+  const { user } = useUser();
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get(`/api/student/courses`, {
+      const response = await axios.get(`/api/subjects`, {
         headers: {
-          username: username,
+          Authorization: `Bearer ${user.idToken}`,
         },
       });
-      setCourses([...response.data.courses, 'General']);
+      setCourses(response.data.map(subject => subject.name));
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
   };
 
   React.useEffect(() => {
-    // Fetch username from local storage or context
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
+    if (user) {
       fetchCourses();
     }
-  }, []);
+  }, [user]);
 
   const handleUploadNote = async () => {
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('course', course);
-    formData.append('uploadedBy', username);
-    if (file) {
-      formData.append('file', file);
-    }
-
     try {
-      await axios.post('/api/notes/create', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      await axios.post('/api/notes/create', {
+        title,
+        content,
+        course,
+        uploadedBy: user.id,
+        fileUrl,
       });
-      alert('Note uploaded successfully');
+      router.push('/notes');
     } catch (error) {
       console.error('Error uploading note:', error);
-      alert('Error uploading note. Please try again.');
     }
   };
 
   return (
-    <Container maxWidth="md" sx={{ backgroundColor: '#ffffff', color: '#A367B1' }}>
+    <Container maxWidth="sm" sx={{ backgroundColor: '#ffffff', color: '#A367B1' }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Upload Note
       </Typography>
@@ -85,24 +77,28 @@ export default function UploadNote() {
         InputProps={{ style: { color: '#A367B1' } }}
       />
       <FormControl fullWidth margin="normal">
-        <InputLabel id="course-label" style={{ color: '#A367B1' }}>Course</InputLabel>
+        <InputLabel style={{ color: '#A367B1' }}>Course</InputLabel>
         <Select
-          labelId="course-label"
           value={course}
           onChange={(e) => setCourse(e.target.value)}
           style={{ color: '#A367B1' }}
         >
-          {courses.map((course, index) => (
-            <MenuItem key={index} value={course}>
+          {courses.map((course) => (
+            <MenuItem key={course} value={course}>
               {course}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <input
-        type="file"
-        onChange={(e) => setFile(e.target.files[0])}
-        style={{ margin: '20px 0', color: '#A367B1' }}
+      <TextField
+        label="File URL"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        value={fileUrl}
+        onChange={(e) => setFileUrl(e.target.value)}
+        InputLabelProps={{ style: { color: '#A367B1' } }}
+        InputProps={{ style: { color: '#A367B1' } }}
       />
       <Button variant="contained" color="primary" onClick={handleUploadNote}>
         Upload Note

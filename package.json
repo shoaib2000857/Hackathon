@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.5.0",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@google-cloud/dialogflow": "^6.11.0",

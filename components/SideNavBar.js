@@ -3,10 +3,12 @@ import * as React from 'react';
 import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@mui/material/styles';
+import { useAuth } from '@clerk/nextjs';
 
-export default function SideNavBar({ onLogout }) {
+export default function SideNavBar() {
   const router = useRouter();
   const theme = useTheme();
+  const { signOut } = useAuth();
 
   const handleDashboard = () => {
     router.push('/dashboard');
@@ -18,6 +20,11 @@ export default function SideNavBar({ onLogout }) {
 
   const handleNotes = () => {
     router.push('/notes');
+  };
+
+  const handleLogout = async () => {
+    await signOut();
+    router.push('/');
   };
 
   return (
@@ -35,16 +42,52 @@ export default function SideNavBar({ onLogout }) {
       }}
     >
       <List>
-        <ListItem button onClick={handleDashboard}>
+        <ListItem
+          component="button"
+          onClick={handleDashboard}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
           <ListItemText primary="Dashboard" sx={{ color: '#ffffff' }} />
         </ListItem>
-        <ListItem button onClick={handleChatbot}>
+        <ListItem
+          component="button"
+          onClick={handleChatbot}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
           <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
         </ListItem>
-        <ListItem button onClick={handleNotes}>
+        <ListItem
+          component="button"
+          onClick={handleNotes}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
           <ListItemText primary="Notes" sx={{ color: '#ffffff' }} />
         </ListItem>
-        <ListItem button onClick={onLogout}>
+        <ListItem
+          component="button"
+          onClick={handleLogout}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
           <ListItemText primary="Logout" sx={{ color: '#ffffff' }} />
         </ListItem>
       </List>

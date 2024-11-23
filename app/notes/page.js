@@ -4,17 +4,18 @@ import * as React from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 
 export default function Notes() {
   const [notes, setNotes] = React.useState([]);
-  const [username, setUsername] = React.useState(''); // Assume username is fetched from context or similar
   const router = useRouter();
+  const { user } = useUser();
 
   const fetchNotes = async () => {
     try {
       const response = await axios.get(`/api/notes`, {
         headers: {
-          username: username,
+          Authorization: `Bearer ${user.idToken}`,
         },
       });
       setNotes(response.data);
@@ -24,13 +25,10 @@ export default function Notes() {
   };
 
   React.useEffect(() => {
-    // Fetch username from local storage or context
-    const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
+    if (user) {
       fetchNotes();
     }
-  }, []);
+  }, [user]);
 
   const handleUploadPage = () => {
     router.push('/notes/upload');

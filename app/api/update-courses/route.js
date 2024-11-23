@@ -2,14 +2,16 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '/lib/mongodb';
 import Student from '/models/Student';
+import { getAuth } from '@clerk/nextjs/server';
 
 export async function POST(req) {
-  const { username, courses } = await req.json();
+  const { userId } = getAuth(req);
+  const { courses } = await req.json();
 
   try {
     await connectToDatabase();
 
-    const student = await Student.findOne({ username });
+    const student = await Student.findOne({ userId });
     if (!student) {
       return NextResponse.json({ message: 'Student not found' }, { status: 404 });
     }

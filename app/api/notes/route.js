@@ -2,20 +2,15 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '/lib/mongodb';
 import Note from '/models/Note';
-import Student from '/models/Student';
+import { getAuth } from '@clerk/nextjs/server';
 
 export async function GET(req) {
-  const { username } = req.headers;
+  const { userId } = getAuth(req);
 
   try {
     await connectToDatabase();
 
-    const student = await Student.findOne({ username });
-    if (!student) {
-      return NextResponse.json({ message: 'Access denied' }, { status: 403 });
-    }
-
-    const notes = await Note.find({ course: { $in: [...student.courses, 'General'] } });
+    const notes = await Note.find({ uploadedBy: userId });
 
     return NextResponse.json(notes, { status: 200 });
   } catch (error) {
