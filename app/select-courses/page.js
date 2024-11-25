@@ -39,12 +39,12 @@ export default function SelectCourses() {
         Select Courses
       </Typography>
       <FormControl fullWidth margin="normal">
-        <InputLabel style={{ color: '#A367B1' }}>Courses</InputLabel>
+        <InputLabel style={{ color: '#FFA500' }}>Courses</InputLabel>
         <Select
           multiple
           value={selectedCourses}
           onChange={handleCourseChange}
-          style={{ color: '#A367B1' }}
+          style={{ color: '#FFA500' }}
         >
           {courses.map((course) => (
             <MenuItem key={course} value={course}>
