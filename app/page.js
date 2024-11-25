@@ -1,116 +1,55 @@
-import * as React from 'react';
-
-// import Image from "next/image";
-// import styles from "./page.module.css";
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-
+import * as React from "react";
+import { Typography, Container } from "@mui/material";
 
 export default function Home() {
-  return(
-    <Container maxWidth="sm">
-      <Typography variant="h2" component="h1" gutterBottom>
-        Welcome to the Learning Management System
+  return (
+    <Container maxWidth="sm" style={{ textAlign: "center", marginTop: "50px" }}>
+      {/* Main Heading */}
+      <Typography 
+        variant="h2" 
+        component="h1" 
+        gutterBottom 
+        style={{ fontWeight: "bold", color: "#FF5722" }} // Orange color
+      >
+        LEARNING MADE EASY!
       </Typography>
-      <Typography variant="h5" component="h2" gutterBottom>
-        Your gateway to a world of knowledge.
+
+      {/* Subheading */}
+      <Typography 
+        variant="h6" 
+        component="p" 
+        gutterBottom 
+        style={{ color: "#4A4A4A" }}
+      >
+        India's first AI-powered LMS concentrated on engineering students.
       </Typography>
-      {/* <Button variant="contained" color="primary" onClick={() => setIsLoggedIn(true)}>
-        Login
-      </Button> */}
+
+      {/* Secondary Heading */}
+      <Typography 
+        variant="h4" 
+        component="h2" 
+        gutterBottom 
+        style={{ fontWeight: "bold", marginTop: "20px", color: "#3F51B5" }} // Blue color
+      >
+        MAARG DARSHAK
+      </Typography>
+
+      {/* Additional Text */}
+      <Typography 
+        variant="body1" 
+        component="p" 
+        style={{ fontStyle: "italic", marginTop: "20px", color: "#757575" }}
+      >
+        I'm ready to make my life easier
+      </Typography>
+
+      <Typography 
+        variant="caption" 
+        component="p" 
+        style={{ marginTop: "10px", color: "#9E9E9E" }}
+      >
+        Leads to login page
+      </Typography>
     </Container>
   );
-  
 }
-  // (
-  //   <div className={styles.page}>
-  //     <main className={styles.main}>
-  //       <Image
-  //         className={styles.logo}
-  //         src="/next.svg"
-  //         alt="Next.js logo"
-  //         width={180}
-  //         height={38}
-  //         priority
-  //       />
-  //       <ol>
-  //         <li>
-  //           Get started by editing <code>app/page.js</code>.
-  //         </li>
-  //         <li>Save and see your changes instantly.</li>
-  //       </ol>
-
-  //       <div className={styles.ctas}>
-  //         <a
-  //           className={styles.primary}
-  //           href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //           target="_blank"
-  //           rel="noopener noreferrer"
-  //         >
-  //           <Image
-  //             className={styles.logo}
-  //             src="/vercel.svg"
-  //             alt="Vercel logomark"
-  //             width={20}
-  //             height={20}
-  //           />
-  //           Deploy now
-  //         </a>
-  //         <a
-  //           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //           target="_blank"
-  //           rel="noopener noreferrer"
-  //           className={styles.secondary}
-  //         >
-  //           Read our docs
-  //         </a>
-  //       </div>
-  //     </main>
-  //     <footer className={styles.footer}>
-  //       <a
-  //         href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <Image
-  //           aria-hidden
-  //           src="/file.svg"
-  //           alt="File icon"
-  //           width={16}
-  //           height={16}
-  //         />
-  //         Learn
-  //       </a>
-  //       <a
-  //         href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <Image
-  //           aria-hidden
-  //           src="/window.svg"
-  //           alt="Window icon"
-  //           width={16}
-  //           height={16}
-  //         />
-  //         Examples
-  //       </a>
-  //       <a
-  //         href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <Image
-  //           aria-hidden
-  //           src="/globe.svg"
-  //           alt="Globe icon"
-  //           width={16}
-  //           height={16}
-  //         />
-  //         Go to nextjs.org →
-  //       </a>
-  //     </footer>
-  //   </div>
-  // );
-
