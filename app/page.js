@@ -34,7 +34,7 @@ export default function App() {
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
           }}
         >
-          Welcome to EduLearn
+          Welcome to Maargadarshak
         </Typography>
       </div>
 
