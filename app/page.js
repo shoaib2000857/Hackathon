@@ -15,54 +15,43 @@ import {
 export default function App() {
   return (
     <div>
-      {/* Landing Page */}
+      {/* Landing Page with HTML as Background */}
       <div
         style={{
           height: "100vh",
-          backgroundImage: "url('https://placehold.co/1920x1080')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "relative", // Important for layering the iframe behind
         }}
       >
+        {/* HTML Background as iframe */}
+        <iframe
+          src="/temp_home/icon.html"  // Replace with your actual HTML file location
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            border: "none",
+            zIndex: -1, // Keeps the iframe behind your content
+          }}
+          title="Background HTML"
+        ></iframe>
+
+        {/* Content on Top of the HTML Background */}
         <Typography
           variant="h2"
           style={{
             color: "#ffffff",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+            zIndex: 1, // Content should be on top
           }}
         >
           Welcome to Maargadarshak
         </Typography>
       </div>
-
-      {/* Header */}
-      <AppBar position="sticky" sx={{ backgroundColor: "#FF5722" }}>
-        <Toolbar>
-          <img
-            src="https://placehold.co/100x50"
-            alt="EduLearn Logo"
-            style={{ marginRight: "16px" }}
-          />
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            EduLearn
-          </Typography>
-          <Button color="inherit" href="#" sx={{ color: "#fff" }}>
-            Home
-          </Button>
-          <Button color="inherit" href="#" sx={{ color: "#fff" }}>
-            Courses
-          </Button>
-          <Button color="inherit" href="#" sx={{ color: "#fff" }}>
-            About Us
-          </Button>
-          <Button color="inherit" href="#" sx={{ color: "#fff" }}>
-            Contact
-          </Button>
-        </Toolbar>
-      </AppBar>
 
       {/* Hero Section */}
       <Container
