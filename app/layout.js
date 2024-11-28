@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TopNavBar from '@/components/TopNavBar';
 import SideNavBar from '@/components/SideNavBar';
 import '@/app/globals.css';
-import { ClerkProvider, SignedIn, SignedOut } from '@clerk/nextjs';
+import { ClerkProvider, SignedIn, SignedOut, useAuth } from '@clerk/nextjs';
 
 const theme = createTheme({
   palette: {
@@ -31,16 +31,20 @@ const theme = createTheme({
   },
 });
 
-export default function RootLayout({ children }) {
+function AuthWrapper({ children }) {
+  const { isSignedIn } = useAuth();
   const router = useRouter();
 
-  const handleLogout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('isLoggedIn');
-      router.push('/');
+  React.useEffect(() => {
+    if (isSignedIn) {
+      router.push('/dashboard');
     }
-  };
+  }, [isSignedIn, router]);
 
+  return children;
+}
+
+export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
@@ -51,14 +55,16 @@ export default function RootLayout({ children }) {
         <body>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <SignedIn>
-              <SideNavBar onLogout={handleLogout} />
-              <main>{children}</main>
-            </SignedIn>
-            <SignedOut>
-              <TopNavBar />
-              <main>{children}</main>
-            </SignedOut>
+            <AuthWrapper>
+              <SignedIn>
+                <SideNavBar />
+                <main>{children}</main>
+              </SignedIn>
+              <SignedOut>
+                <TopNavBar />
+                <main>{children}</main>
+              </SignedOut>
+            </AuthWrapper>
           </ThemeProvider>
         </body>
       </html>

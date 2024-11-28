@@ -79,21 +79,21 @@ export default function App() {
         <Grid container spacing={4}>
           {[
             {
-              title: "Introduction to Programming",
+              title: "Programming For Problem Solving",
               description:
                 "Learn the basics of programming with hands-on tutorials and real-world examples.",
               image: "https://placehold.co/300x200",
             },
             {
-              title: "Chemistry Fundamentals",
+              title: "Engineering Chemistry",
               description:
                 "Explore the fascinating world of chemistry with interactive lessons and experiments.",
               image: "https://placehold.co/300x200",
             },
             {
-              title: "Virtual Reality in Education",
+              title: "CAEG",
               description:
-                "Discover how virtual reality is transforming the educational landscape.",
+                "Discover how Graphics is transforming the educational landscape.",
               image: "https://placehold.co/300x200",
             },
           ].map((course, index) => (
@@ -178,7 +178,7 @@ export default function App() {
         }}
       >
         <Typography variant="body2">
-          &copy; 2024 EduLearn. All rights reserved.
+          &copy; 2024 Maargadarshak. All rights reserved.
         </Typography>
       </footer>
     </div>

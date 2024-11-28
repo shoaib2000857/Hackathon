@@ -1,7 +1,7 @@
 // app/chatbot/page.js
 'use client';
 import * as React from 'react';
-import { Container, Typography, TextField, Button, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { Container, Typography, TextField, Button, Box, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import { AttachFile } from '@mui/icons-material';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
@@ -13,15 +13,26 @@ export default function Chatbot() {
   const [file, setFile] = React.useState(null);
   const theme = useTheme();
 
+  React.useEffect(() => {
+    const storedMessages = localStorage.getItem('chatMessages');
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+  }, []);
+
+  React.useEffect(() => {
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+  }, [messages]);
+
   const handleSendMessage = async () => {
     if (input.trim() === '' && !file) return;
 
-    const newMessage = { text: input, file: file ? file.name : null };
+    const newMessage = { text: input, file: file ? file.name : null, isBot: false };
     setMessages([...messages, newMessage]);
 
-    // Send message to Gemini API
+    // Send message to Gemini API with history
     try {
-      const response = await axios.post('/api/chatbot', { message: input });
+      const response = await axios.post('/api/chatbot', { message: input, history: messages });
       const botResponse = response.data.reply;
       setMessages([...messages, newMessage, { text: botResponse, isBot: true, isMarkdown: true }]);
     } catch (error) {
@@ -35,6 +46,18 @@ export default function Chatbot() {
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
+  };
+
+  const handleClearChat = () => {
+    setMessages([]);
+    localStorage.removeItem('chatMessages');
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSendMessage();
+    }
   };
 
   return (
@@ -68,6 +91,7 @@ export default function Chatbot() {
         margin="normal"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onKeyPress={handleKeyPress}
         InputLabelProps={{ style: { color: theme.palette.text.primary } }}
         InputProps={{
           style: { color: theme.palette.text.primary },
@@ -79,9 +103,14 @@ export default function Chatbot() {
           ),
         }}
       />
-      <Button variant="contained" color="primary" onClick={handleSendMessage}>
-        Send
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
+        <Button variant="contained" color="primary" onClick={handleSendMessage}>
+          Send
+        </Button>
+        <Button variant="contained" color="primary" onClick={handleClearChat} sx={{ backgroundColor: theme.palette.primary.main }}>
+          Clear Chat
+        </Button>
+      </Box>
     </Container>
   );
 }
