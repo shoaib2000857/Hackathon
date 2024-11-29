@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NavBar.css'; // Ensure your CSS file is imported
 import { Icon } from '@mui/material';
 import { useRouter } from 'next/router';
@@ -8,7 +8,12 @@ const NavBar = () => {
   const [navToggle, setNavToggle] = useState(false);
   const [footerToggle, setFooterToggle] = useState(false);
   const [highlightStyle, setHighlightStyle] = useState({});
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setIsClient(true); // This ensures that the router is used only on the client side
+  }, []);
 
   const handleNavToggle = () => {
     setNavToggle(!navToggle);
@@ -46,6 +51,10 @@ const NavBar = () => {
     { label: 'Notes' },
     { label: 'Logout' },
   ];
+
+  if (!isClient) {
+    return null; // Render nothing until client-side rendering is complete
+  }
 
   return (
     <div id="nav-bar">

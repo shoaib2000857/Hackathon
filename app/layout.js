@@ -1,4 +1,3 @@
-// app/layout.js
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,6 +30,7 @@ const theme = createTheme({
   },
 });
 
+// AuthWrapper component for redirecting authenticated users
 function AuthWrapper({ children }) {
   const { isSignedIn } = useAuth();
   const router = useRouter();
@@ -56,11 +56,14 @@ export default function RootLayout({ children }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <AuthWrapper>
+              {/* Conditionally render navigation based on user's signed-in state */}
               <SignedIn>
+                {/* Side navigation bar for signed-in users */}
                 <SideNavBar />
                 <main>{children}</main>
               </SignedIn>
               <SignedOut>
+                {/* Top navigation bar for signed-out users */}
                 <TopNavBar />
                 <main>{children}</main>
               </SignedOut>
