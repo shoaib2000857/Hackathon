@@ -39,7 +39,7 @@ export default function Forums() {
       </Typography>
       <List>
         {courses.map((course, index) => (
-          <ListItem button key={index} onClick={() => handleForumClick(course)}>
+          <ListItem component="button" key={index} onClick={() => handleForumClick(course)}>
             <ListItemText primary={course} />
           </ListItem>
         ))}

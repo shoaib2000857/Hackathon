@@ -13,7 +13,8 @@ export default function SideNavBar() {
   const handleDashboard = () => {
     router.push('/dashboard');
   };
-  const handleforums = () => {
+
+  const handleForums = () => {
     router.push('/forums');
   };
 
@@ -69,10 +70,9 @@ export default function SideNavBar() {
         >
           <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
         </ListItem>
-
         <ListItem
           component="button"
-          onClick={handleforums}
+          onClick={handleForums}
           sx={{
             '&:hover': {
               backgroundColor: theme.palette.primary.light,
@@ -82,9 +82,6 @@ export default function SideNavBar() {
         >
           <ListItemText primary="Forums" sx={{ color: '#ffffff' }} />
         </ListItem>
-
-
-
         <ListItem
           component="button"
           onClick={handleNotes}
