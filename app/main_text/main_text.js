@@ -42,7 +42,7 @@ function FadeTextDemo() {
             hidden: { opacity: 0 }, // Ensures opacity starts at 0
             show: { opacity: 1, transition: { delay: 1.2 } }, // Transition to opacity 1
           }}
-          text="Decode, Design, Deliver."
+          text="Read. Reflect. Review."
         />
       </div>
 
