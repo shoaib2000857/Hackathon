@@ -33,8 +33,7 @@ export default function App() {
               zIndex: 1,
               borderRadius: "100px", 
               border: "10px solid transparent",
-              borderTop: "none"// Keeps iframe behind the content
-            }}
+              }}
             title="Background HTML"
           ></iframe>
           
