@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import TypingAnimationDemo from './reviews/reviews.js';
 import FadeTextDemo from './main_text/main_text.js';
-import { Container, Grid, Typography, Card, CardContent, CardMedia, Avatar } from '@mui/material';
+import { Container, Grid, Typography, Card, CardContent, CardMedia } from '@mui/material';
 import RainbowButtonDemo from './buttonn/buttonn.js';
-
+import FeaturesSection from './feature/feature.js';
 export default function App() {
   return (
-    <div>
+    <div style={{ backgroundColor: "#D9A892", color: "white", minHeight: "100vh" }}>
       <div>
         {/* Landing Page with HTML as Background */}
         <div
@@ -30,16 +30,19 @@ export default function App() {
               width: "100%",
               height: "100%",
               border: "none",
-              zIndex: -1, // Keeps iframe behind the content
+              zIndex: 1,
+              borderRadius: "100px", 
+              border: "10px solid transparent",
+              borderTop: "none"// Keeps iframe behind the content
             }}
             title="Background HTML"
           ></iframe>
           
           {/* Render FadeTextDemo and RainbowButtonDemo */}
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center' ,zIndex: 2}}>
             <FadeTextDemo />
             {/* Add some margin-top to give space between the text and button */}
-            <div style={{ marginTop: "200px" }}>
+            <div style={{ marginTop: "200px" ,zIndex: 2}}>
               <RainbowButtonDemo />
             </div>
           </div>
@@ -47,82 +50,23 @@ export default function App() {
       </div>
 
       {/* Section: Empower Your Future */}
-      <Container
-        maxWidth="md"
-        sx={{
-          textAlign: "center",
-          py: 8,
-          backgroundColor: "#f9f9f9",
-          marginTop: "16px",
-        }}
-      >
-        <Typography variant="h2" gutterBottom>
-          Empower Your Future
-        </Typography>
-        <Typography variant="body1" sx={{ fontSize: "1.2rem", marginBottom: 4 }}>
-          Unlock the potential of quality education with EduLearn.
-        </Typography>
-      </Container>
 
       {/* Featured Courses */}
       <Container maxWidth="lg" sx={{ py: 8 }}>
-        <Typography variant="h4" gutterBottom align="center">
-          Featured Courses
-        </Typography>
-        <Grid container spacing={4}>
-          {[
-            {
-              title: "Programming For Problem Solving",
-              description:
-                "Learn the basics of programming with hands-on tutorials and real-world examples.",
-              image: "https://placehold.co/300x200",
-            },
-            {
-              title: "Engineering Chemistry",
-              description:
-                "Explore the fascinating world of chemistry with interactive lessons and experiments.",
-              image: "https://placehold.co/300x200",
-            },
-            {
-              title: "CAEG",
-              description:
-                "Discover how Graphics is transforming the educational landscape.",
-              image: "https://placehold.co/300x200",
-            },
-          ].map((course, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={course.image}
-                  alt={course.title}
-                />
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    {course.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {course.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+        <FeaturesSection></FeaturesSection>
       </Container>
 
       {/* Testimonials */}
       <Container
         maxWidth="lg"
-        sx={{ py: 11, backgroundColor: "#f9f9f9", textAlign: "center" }}
+        sx={{ py: 11, backgroundColor: "#f9f9f9", textAlign: "center", color: "black" }}
       >
         <Typography variant="h4" gutterBottom>
           What Our Students Say
         </Typography>
         <TypingAnimationDemo />
       </Container>
-
+      
       {/* Footer */}
       <footer
         style={{

@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			salita: ['Salita', 'sans-serif'],
+		  },	
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

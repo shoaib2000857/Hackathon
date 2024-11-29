@@ -16,7 +16,7 @@ export default function TopNavBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#ff9e6d" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#D91656" }}>
       <Toolbar>
         {/* Circular Logo */}
         <Box
