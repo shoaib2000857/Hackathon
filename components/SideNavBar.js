@@ -1,11 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import './NavBar.css'; // Ensure your CSS file is imported
 import { Icon } from '@mui/material';
+import { useRouter } from 'next/router';
+import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 
 const NavBar = () => {
   const [navToggle, setNavToggle] = useState(false);
   const [footerToggle, setFooterToggle] = useState(false);
   const [highlightStyle, setHighlightStyle] = useState({});
+  const router = useRouter();
 
   const handleNavToggle = () => {
     setNavToggle(!navToggle);
@@ -13,6 +16,7 @@ const NavBar = () => {
 
   const handleFooterToggle = () => {
     setFooterToggle(!footerToggle);
+  };
 
   const handleForums = () => {
     router.push('/forums');
@@ -38,9 +42,9 @@ const NavBar = () => {
   const navButtons = [
     { label: 'Dashboard' },
     { label: 'Chatbot' },
-    {  label: 'Forums' },
+    { label: 'Forums' },
     { label: 'Notes' },
-    {  label: 'Logout' },
+    { label: 'Logout' },
   ];
 
   return (
@@ -66,7 +70,7 @@ const NavBar = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Icon>{button.icon}</Icon>
+            <Icon>home</Icon> {/* Use a default icon like 'home' */}
             <span>{button.label}</span>
           </div>
         ))}
@@ -81,73 +85,72 @@ const NavBar = () => {
             background: 'blue',
             borderRadius: '8px',
             transition: highlightStyle.transition,
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: 240,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: 240,
-          boxSizing: 'border-box',
-          backgroundColor: theme.palette.primary.main,
-          color: '#ffffff',
-        },
-      }}
-    >
-      <List>
-        <ListItem
-          component="button"
-          onClick={handleDashboard}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-          }}
-        >
-          <ListItemText primary="Dashboard" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="button"
-          onClick={handleChatbot}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-          }}
-        >
-          <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="button"
-          onClick={handleForums}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-          }}
-        >
-          <ListItemText primary="Forums" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="button"
-          onClick={handleNotes}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
           }}
         />
       </div>
+
+      {/* Footer Toggle */}
       <input
         id="nav-footer-toggle"
         type="checkbox"
         checked={footerToggle}
         onChange={handleFooterToggle}
       />
+      
+      {/* Drawer Component */}
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: 240,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: 240,
+            boxSizing: 'border-box',
+            backgroundColor: '#1976d2', // Set a background color if needed
+            color: '#ffffff',
+          },
+        }}
+      >
+        <List>
+          <ListItem
+            component="button"
+            onClick={handleForums}
+            sx={{
+              '&:hover': {
+                backgroundColor: '#1565c0',
+              },
+              cursor: 'pointer',
+            }}
+          >
+            <ListItemText primary="Forums" sx={{ color: '#ffffff' }} />
+          </ListItem>
+          <ListItem
+            component="button"
+            onClick={() => router.push('/chatbot')}
+            sx={{
+              '&:hover': {
+                backgroundColor: '#1565c0',
+              },
+              cursor: 'pointer',
+            }}
+          >
+            <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
+          </ListItem>
+          <ListItem
+            component="button"
+            onClick={() => router.push('/dashboard')}
+            sx={{
+              '&:hover': {
+                backgroundColor: '#1565c0',
+              },
+              cursor: 'pointer',
+            }}
+          >
+            <ListItemText primary="Dashboard" sx={{ color: '#ffffff' }} />
+          </ListItem>
+          {/* Add more ListItems as needed */}
+        </List>
+      </Drawer>
     </div>
   );
 };
