@@ -13,6 +13,9 @@ const NavBar = () => {
 
   const handleFooterToggle = () => {
     setFooterToggle(!footerToggle);
+
+  const handleForums = () => {
+    router.push('/forums');
   };
 
   const handleMouseEnter = (event) => {
@@ -78,6 +81,64 @@ const NavBar = () => {
             background: 'blue',
             borderRadius: '8px',
             transition: highlightStyle.transition,
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: 240,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: 240,
+          boxSizing: 'border-box',
+          backgroundColor: theme.palette.primary.main,
+          color: '#ffffff',
+        },
+      }}
+    >
+      <List>
+        <ListItem
+          component="button"
+          onClick={handleDashboard}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
+          <ListItemText primary="Dashboard" sx={{ color: '#ffffff' }} />
+        </ListItem>
+        <ListItem
+          component="button"
+          onClick={handleChatbot}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
+          <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
+        </ListItem>
+        <ListItem
+          component="button"
+          onClick={handleForums}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
+          }}
+        >
+          <ListItemText primary="Forums" sx={{ color: '#ffffff' }} />
+        </ListItem>
+        <ListItem
+          component="button"
+          onClick={handleNotes}
+          sx={{
+            '&:hover': {
+              backgroundColor: theme.palette.primary.light,
+            },
+            cursor: 'pointer',
           }}
         />
       </div>
