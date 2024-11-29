@@ -2,12 +2,13 @@
 import React from "react";
 import TypingAnimationDemo from './reviews/reviews.js';
 import FadeTextDemo from './main_text/main_text.js';
-import { Container, Grid, Typography, Card, CardContent, CardMedia } from '@mui/material';
+import { Typography } from '@mui/material';
 import RainbowButtonDemo from './buttonn/buttonn.js';
 import FeaturesSection from './feature/feature.js';
+
 export default function App() {
   return (
-    <div style={{ backgroundColor: "#D9A892", color: "white", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#FBEFE1", color: "white", minHeight: "100vh" }}>
       <div>
         {/* Landing Page with HTML as Background */}
         <div
@@ -31,41 +32,53 @@ export default function App() {
               height: "100%",
               border: "none",
               zIndex: 1,
-              borderRadius: "100px", 
-              border: "10px solid transparent",
-              }}
+              // borderRadius: "100px",
+              // border: "10px solid transparent",
+            }}
             title="Background HTML"
           ></iframe>
-          
+
           {/* Render FadeTextDemo and RainbowButtonDemo */}
-          <div style={{ textAlign: 'center' ,zIndex: 2}}>
+          <div style={{ textAlign: 'center', zIndex: 2 }}>
             <FadeTextDemo />
             {/* Add some margin-top to give space between the text and button */}
-            <div style={{ marginTop: "200px" ,zIndex: 2}}>
+            <div style={{ marginTop: "200px", zIndex: 2 }}>
               <RainbowButtonDemo />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Section: Empower Your Future */}
+      {/* Features Section - 80% Width */}
+      <div
+  style={{
+    width: "80%",
+    margin: "0 auto", // Centers the section
+  }}
+>
+  <FeaturesSection />
+</div>
 
-      {/* Featured Courses */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
-        <FeaturesSection></FeaturesSection>
-      </Container>
 
-      {/* Testimonials */}
-      <Container
-        maxWidth="lg"
-        sx={{ py: 11, backgroundColor: "#f9f9f9", textAlign: "center", color: "black" }}
-      >
-        <Typography variant="h4" gutterBottom>
-          What Our Students Say
-        </Typography>
-        <TypingAnimationDemo />
-      </Container>
-      
+      {/* Testimonials - Full Width */}
+<div
+  style={{
+    width: "90%",
+    // padding: "32px 0",
+    backgroundColor: "#f9f9f9",
+    textAlign: "center",
+    color: "black",
+    display: "flex",  // Use flex to center content
+    justifyContent: "center",  // Horizontally center
+    alignItems: "center",  // Vertically center
+    margin: "0 auto", 
+    marginTop: "50px " // Center the div within its parent
+  }}
+>
+  <TypingAnimationDemo />
+</div>
+
+
       {/* Footer */}
       <footer
         style={{

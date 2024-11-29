@@ -69,19 +69,56 @@ const ReviewCard = ({ img, name, username, body }) => {
 
 export default function HomePage() {
   return (
-    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+    <div
+      className="relative flex h-auto w-full flex-col items-center justify-center overflow-hidden rounded-lg  bg-[#FBEFE1] "
+      style={{
+        padding: "20px", // Add padding around the content
+      }}
+    >
+      {/* Heading */}
+      <h2 style={{ textAlign: 'center', fontSize: '2.5rem', fontWeight: 'bold', color: '#3E2723', marginBottom: '37px' }}>
+            What Our Students Say
+          </h2>
+
+      {/* Reviews Section */}
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+          <ReviewCard
+            key={review.username}
+            {...review}
+            style={{
+              backgroundColor: "#FFF2E0", // Soft cream background
+              borderColor: "#D9A892", // Matches the parent
+            }}
+          />
         ))}
       </Marquee>
       <Marquee reverse pauseOnHover className="[--duration:20s]">
         {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
+          <ReviewCard
+            key={review.username}
+            {...review}
+            style={{
+              backgroundColor: "#FFF2E0", // Soft cream background
+              borderColor: "#D9A892", // Matches the parent
+            }}
+          />
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+
+      {/* Gradient Overlays */}
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 w-1/3"
+        style={{
+          backgroundImage: "linear-gradient(to right, #FBEFE1, transparent)",
+        }}
+      ></div>
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 w-1/3"
+        style={{
+          backgroundImage: "linear-gradient(to left, #FBEFE1, transparent)",
+        }}
+      ></div>
     </div>
   );
 }

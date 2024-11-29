@@ -14,7 +14,7 @@ function FadeTextDemo() {
             hidden: { opacity: 0 }, // Ensures opacity starts at 0
             show: { opacity: 1, transition: { delay: 0.8 } }, // Transition to opacity 1
           }}
-          text="Welcome to Matrix..."
+          text="Welcome to Maargadarshak..."
         />
         {/* <FadeText
           className="text-4xl font-bold text-black dark:text-white"
