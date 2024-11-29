@@ -2,8 +2,8 @@
   --background: #9c88ff;
   --navbar-width: 256px;
   --navbar-width-min: 80px;
-  --navbar-dark-primary: #18283b;
-  --navbar-dark-secondary: #2c3e50;
+  --navbar-dark-primary: black;
+  --navbar-dark-secondary: black;
   --navbar-light-primary: #f5f6fa;
   --navbar-light-secondary: #8392a5;
 }
@@ -17,7 +17,8 @@ html, body {
   width: calc(var(--navbar-width-min) - 16px);
 }
 
-#nav-toggle:checked ~ #nav-content, #nav-toggle:checked ~ #nav-footer {
+#nav-toggle:checked ~ #nav-content, 
+#nav-toggle:checked ~ #nav-footer {
   width: var(--navbar-width-min);
 }
 
@@ -80,7 +81,7 @@ html, body {
   left: 1vw;
   top: 1vw;
   height: calc(100% - 2vw);
-  background: var(--navbar-dark-primary);
+  background: #D45D3D;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -113,11 +114,12 @@ html, body {
   width: var(--navbar-width);
   left: 16px;
   min-height: 80px;
-  background: var(--navbar-dark-primary);
+  background: #D45D3D;
   border-radius: 16px;
   z-index: 2;
   display: flex;
   align-items: center;
+  justify-content: center; /* Center the header content */
   transition: width .2s;
 }
 
@@ -129,6 +131,7 @@ html, body {
 #nav-title {
   font-size: 1.5rem;
   transition: opacity 1s;
+  text-align: center; /* Center the title text */
 }
 
 #nav-header label[for="nav-toggle"] {
@@ -146,7 +149,7 @@ html, body {
   position: relative;
   width: 16px;
   height: 2px;
-  background: var(--navbar-dark-primary);
+  background: #D45D3D;
   border-radius: 99px;
   transition: background .2s;
 }
@@ -170,13 +173,14 @@ html, body {
 }
 
 #nav-content {
-  margin: -16px 0;
+  margin: 16px 0;
+  margin-bottom: 16px;
   padding: 16px 0;
   position: relative;
   flex: 1;
   width: var(--navbar-width);
-  background: var(--navbar-dark-primary);
-  box-shadow: 0 0 0 16px var(--navbar-dark-primary);
+  background: #D45D3D;
+  box-shadow: 0 0 0 16px #D45D3D;
   direction: rtl;
   overflow-x: hidden;
   transition: width .2s;
@@ -192,37 +196,17 @@ html, body {
   background-color: #D62929;
 }
 
-#nav-content::-webkit-scrollbar-button {
-  height: 16px;
-}
-
 #nav-content-highlight {
   position: absolute;
   left: 16px;
-  top: -54px;
+  top: 0;
   width: calc(100% - 16px);
-  height: 54px;
-  background: var(--background);
-  background-attachment: fixed;
-  border-radius: 16px 0 0 16px;
-  transition: top .2s;
-}
-
-#nav-content-highlight:before,
-#nav-content-highlight:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  box-shadow: 16px 16px var(--background);
-}
-
-#nav-content-highlight:after {
-  top: 100%;
-  box-shadow: 16px -16px var(--background);
+  height: 54px; /* Adjust height as needed */
+  background: white; /* Set highlight color */
+  /* border-radius: 8px; Optional: rounded corners */
+  border-radius: 15px 0 0 15px;
+  z-index: 0; /* Ensure it stays behind the buttons */
+  transition: top 0.2s ease, height 0.2s ease; /* Smooth transition for position */
 }
 
 .nav-button {
@@ -231,7 +215,8 @@ html, body {
   height: 54px;
   display: flex;
   align-items: center;
-  color: var(--navbar-light-secondary);
+  justify-content: center; /* Center the button content */
+  color: black;
   direction: ltr;
   cursor: pointer;
   z-index: 1;
@@ -240,15 +225,15 @@ html, body {
 
 .nav-button span {
   transition: opacity 1s;
+  text-align: center; /* Center the text within the button */
 }
 
-.nav-button .fas {
-  transition: min-width .2s;
+.nav-button:hover {
+  color: black  ; /* Change text color on hover */
 }
 
-#nav-bar .fas {
-  min-width: 3rem;
-  text-align: center;
+.nav-button.active {
+  color: black; /* Change color for active state */
 }
 
 #nav-footer {
@@ -269,6 +254,7 @@ html, body {
   height: 54px;
   display: flex;
   align-items: center;
+  justify-content: center; /* Center the footer heading */
 }
 
 #nav-footer-avatar {
@@ -301,15 +287,6 @@ html, body {
   font-size: .6rem;
 }
 
-#nav-toggle:not(:checked) ~ #nav-footer-toggle:checked + #nav-footer {
-  height: 30%;
-  min-height: 54px;
-}
-
-#nav-footer-toggle label[for="nav-footer-toggle"] {
-  transform: rotate(180deg);
-}
-
 #nav-footer-toggle label[for="nav-footer-toggle"] {
   position: absolute;
   right: 0;
@@ -317,6 +294,7 @@ html, body {
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center; /* Center the toggle label */
   cursor: pointer;
   transition: transform .2s, opacity .2s;
 }
@@ -331,7 +309,7 @@ html, body {
 }
 
 #nav-footer-content::-webkit-scrollbar {
-  width: 8px;
+  width: 8 px;
   height: 8px;
 }
 
@@ -339,50 +317,3 @@ html, body {
   border-radius: 99px;
   background-color: #D62929;
 }
-
-/* Add this to your existing CSS */
-
-/* Add this to your existing CSS */
-/* Ensure highlight effect follows button and appears behind buttons */
-#nav-content-highlight {
-  position: absolute;
-  left: 20px;
-  width: calc(100% - 40px); /* Adjust the width to fit within the navbar */
-  height: 54px; /* Adjust height as needed */
-  background: blue; /* Set highlight color */
-  border-radius: 8px; /* Optional: rounded corners */
-  z-index: 0; /* Ensure it stays behind the buttons */
-  transition: transform 0.2s ease; /* Smooth transition for position */
-}
-
-/* Nav buttons adjustments */
-.nav-button {
-  position: relative;
-  padding: 16px; /* Adjust padding */
-  cursor: pointer;
-  color: var(--navbar-light-secondary); /* Default text color */
-  transition: color 0.2s ease; /* Smooth transition for text color */
-}
-
-/* When hovering over a nav button */
-.nav-button:hover {
-  color: white; /* Change text color on hover */
-}
-
-/* Apply highlight style dynamically based on hovered button */
-.nav-button:hover ~ #nav-content-highlight {
-  transform: translateY(calc(-50% + 16px)); /* Center highlight vertically based on button position */
-  width: calc(100% - 40px); /* Adjust width of highlight */
-  transition: transform 0.2s ease, width 0.2s ease; /* Smooth transition for movement and width */
-}
-
-/* Optional: highlight shape adjustments for a more rounded or sharp look */
-#nav-content-highlight {
-  border-radius: 16px; /* You can adjust this for different effects */
-}
-
-/* Specific button active highlight */
-.nav-button.active {
-  color: white; /* Change color for active state */
-}
-

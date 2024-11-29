@@ -1,158 +1,81 @@
-// components/SideNavBar.js
-import * as React from 'react';
-import { Drawer, List, ListItem, ListItemText } from '@mui/material';
-import { useRouter } from 'next/navigation';
-import { useTheme } from '@mui/material/styles';
-import { useAuth } from '@clerk/nextjs';
+import React, { useState } from 'react';
+import './NavBar.css';
 
-export default function SideNavBar() {
-  const router = useRouter();
-  const theme = useTheme();
-  const { signOut } = useAuth();
-  const [highlightStyle, setHighlightStyle] = React.useState({});
+const NavBar = () => {
+  const [navToggle, setNavToggle] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [highlightStyle, setHighlightStyle] = useState({
+    top: 0,
+    opacity: 0
+  });
 
-  const handleMouseEnter = (event) => {
+  const navButtons = [
+    { icon: 'palette', label: 'Dashboard' },
+    { icon: 'images', label: 'Chatbot' },
+    { icon: 'thumbtack', label: 'Formus' },
+    { icon: 'heart', label: 'Notes' },
+    { icon: 'chart-line', label: 'Logout' }
+  ];
+
+  const handleMouseEnter = (event, index) => {
     const { offsetTop, clientHeight } = event.currentTarget;
     setHighlightStyle({
       top: offsetTop,
       height: clientHeight,
-      transition: 'top 0.3s ease-in-out, height 0.3s ease-in-out',
+      opacity: 1
     });
+    setActiveIndex(index);
   };
 
   const handleMouseLeave = () => {
     setHighlightStyle({
-      top: '-100%',
-      height: 0,
-      transition: 'top 0.3s ease-in-out, height 0.3s ease-in-out',
+      top: 0,
+      opacity: 0,
+      height: 0
     });
-  };
-
-  const handleDashboard = () => {
-    router.push('/dashboard');
-  };
-
-  const handleForums = () => {
-    router.push('/forums');
-  };
-
-  const handleChatbot = () => {
-    router.push('/chatbot');
-  };
-
-  const handleNotes = () => {
-    router.push('/notes');
-  };
-
-  const handleLogout = async () => {
-    await signOut();
-    router.push('/');
+    setActiveIndex(null);
   };
 
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: 240,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: 240,
-          boxSizing: 'border-box',
-          backgroundColor: theme.palette.primary.main,
-          color: '#ffffff',
-        },
-      }}
-    >
-      <List>
-        <ListItem
-          component="div"
-          onClick={handleDashboard}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-            position: 'relative',
-          }}
-        >
-          <ListItemText primary="Dashboard" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="div"
-          onClick={handleChatbot}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-            position: 'relative',
-          }}
-        >
-          <ListItemText primary="Chatbot" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="div"
-          onClick={handleForums}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-            position: 'relative',
-          }}
-        >
-          <ListItemText primary="Forums" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="div"
-          onClick={handleNotes}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-            position: 'relative',
-          }}
-        >
-          <ListItemText primary="Notes" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <ListItem
-          component="div"
-          onClick={handleLogout}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          sx={{
-            '&:hover': {
-              backgroundColor: theme.palette.primary.light,
-            },
-            cursor: 'pointer',
-            position: 'relative',
-          }}
-        >
-          <ListItemText primary="Logout" sx={{ color: '#ffffff' }} />
-        </ListItem>
-        <div
+    <div id="nav-bar">
+      <input
+        id="nav-toggle"
+        type="checkbox"
+        checked={navToggle}
+        onChange={() => setNavToggle(!navToggle)}
+      />
+      
+      <div id="nav-header">
+        <div id="nav-title">Maargdarshak</div>
+        <hr />
+      </div>
+      
+      <div id="nav-content">
+        {navButtons.map((button, index) => (
+          <div
+            key={index}
+            className={`nav-button ${activeIndex === index ? 'active' : ''}`}
+            onMouseEnter={(e) => handleMouseEnter(e, index)}
+            onMouseLeave={handleMouseLeave}
+          >
+            <i className={`fas fa-${button.icon}`} />
+            <span>{button.label}</span>
+          </div>
+        ))}
+        
+        <div 
           id="nav-content-highlight"
           style={{
-            position: 'absolute',
-            left: '16px',
-            top: `${highlightStyle.top}px`,
-            height: `${highlightStyle.height}px`,
-            width: 'calc(100% - 16px)',
-            background: 'blue',
-            borderRadius: '8px',
-            transition: highlightStyle.transition,
+            top: highlightStyle.top,
+            height: highlightStyle.height,
+            opacity: highlightStyle.opacity,
+            background: '#FFF9F0', // Soft blue highlight
+            transition: 'all 0.2s ease'
           }}
         />
-      </List>
-    </Drawer>
+      </div>
+    </div>
   );
-}
+};
+
+export default NavBar;

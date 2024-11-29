@@ -44,7 +44,7 @@ export default function Dashboard() {
       sx={{ 
         display: 'flex', // Use flexbox for layout
         height: '100vh', 
-        backgroundColor: 'rgba(0, 0, 255, 255)', 
+        backgroundColor: '#FFF9F0', 
         color: '#A367B1' 
       }}
     >
@@ -52,7 +52,7 @@ export default function Dashboard() {
       <Box 
         sx={{ 
           width: '350px', // Set sidebar width
-          backgroundColor: '#0000ff', // Sidebar background
+          backgroundColor: '#FFF9F0', // Sidebar background
           padding: 2 
         }}
       ></Box>
