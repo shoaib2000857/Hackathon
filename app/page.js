@@ -3,10 +3,15 @@ import React from "react";
 import TypingAnimationDemo from './reviews/reviews.js';
 import FadeTextDemo from './main_text/main_text.js';
 import { Typography } from '@mui/material';
-import RainbowButtonDemo from './buttonn/buttonn.js';
 import FeaturesSection from './feature/feature.js';
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import { useRouter } from 'next/navigation';
 
 export default function App() {
+  const router = useRouter();
+  const handleSignup = () => {
+    router.push("/signup");
+  };
   return (
     <div style={{ backgroundColor: "#FBEFE1", color: "white", minHeight: "100vh" }}>
       <div>
@@ -43,7 +48,7 @@ export default function App() {
             <FadeTextDemo />
             {/* Add some margin-top to give space between the text and button */}
             <div style={{ marginTop: "200px", zIndex: 2 }}>
-              <RainbowButtonDemo />
+            <RainbowButton onClick={handleSignup}>Let's Sign in</RainbowButton>;
             </div>
           </div>
         </div>
