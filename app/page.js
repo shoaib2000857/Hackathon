@@ -68,7 +68,7 @@ export default function App() {
       {/* Testimonials - Full Width */}
 <div
   style={{
-    width: "90%",
+    width: "60%",
     // padding: "32px 0",
     backgroundColor: "#f9f9f9",
     textAlign: "center",
