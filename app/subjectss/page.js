@@ -92,11 +92,6 @@ export default function subjectss() {
             </Grid>
           ))}
         </Grid>
-        <Box textAlign="center" mt={4}>
-          <Button variant="contained" color="primary" onClick={handleChangeCourses}>
-            Change Courses
-          </Button>
-        </Box>
       </Container>
     </Box>
   );
