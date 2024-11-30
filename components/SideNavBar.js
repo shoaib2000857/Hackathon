@@ -11,9 +11,9 @@ const NavBar = () => {
 
   const navButtons = [
     { icon: 'palette', label: 'Dashboard' },
-    { icon: 'images', label: 'Chatbot' },
+    { icon: 'book', label: 'Subjects' }, 
     { icon: 'thumbtack', label: 'Formus' },
-    { icon: 'heart', label: 'Notes' },
+    { icon: 'images', label: 'Chatbot' },
     { icon: 'chart-line', label: 'Logout' }
   ];
 
