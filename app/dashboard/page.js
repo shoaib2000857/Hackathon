@@ -48,20 +48,6 @@ export default function Dashboard() {
         color: '#A367B1' 
       }}
     >
-      {/* Sidebar */}
-      <Box 
-        sx={{ 
-          width: '250px', 
-          backgroundColor: '#FFF9F0', 
-          padding: 2, 
-          boxShadow: 1 
-        }}
-      >
-        <Typography variant="h6" gutterBottom align="center">
-          Maargdarshak
-        </Typography>
-      </Box>
-
       {/* Main Content */}
       <Container 
         maxWidth="lg" 
