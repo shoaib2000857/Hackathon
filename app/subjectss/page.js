@@ -1,93 +1,117 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { Container, Typography, List, ListItem, ListItemText, Box, Grid, Paper, Button } from '@mui/material';
-import axios from 'axios';
-import { useUser } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
+import React from 'react';
+import { Container, Typography, Grid, Paper, Box } from '@mui/material';
 
-export default function subjectss() {
-  const [subjects, setSubjects] = useState([]);
-  const router = useRouter();
-  const { user } = useUser();
+const subjects = [
+  { name: 'EDC', resources: ['Notes', 'Recorded Lecture', 'Mock Test', 'Previous Year Question'] },
+  { name: 'BEE', resources: ['Notes', 'Recorded Lecture', 'Mock Test', 'Previous Year Question'] },
+  { name: 'CAEG', resources: ['Notes', 'Recorded Lecture', 'Mock Test', 'Previous Year Question'] },
+  { name: 'EC', resources: ['Notes', 'Recorded Lecture', 'Mock Test', 'Previous Year Question'] },
+  { name: 'PPS', resources: ['Notes', 'Recorded Lecture', 'Mock Test', 'Previous Year Question'] },
+  { name: 'M & C', resources: ['Notes', 'Recorded Lecture', 'Mock Test', 'Previous Year Question'] },
+];
 
-  const fetchSubjects = async () => {
-    try {
-        console.log("ji");
-      const response = await axios.get(`../api/subjects`, {
-        headers: {
-          Authorization: `Bearer ${user.idToken}`,
-        },
-        
-      });
-      setSubjects(response.data);
-    } catch (error) {
-      console.error('Error fetching subjects:', error);
-    }
-  };
-
-  useEffect(() => {
-    if (user) {
-      fetchSubjects();
-    }
-  }, [user]);
-
-  const handleChangeCourses = () => {
-    router.push('/select-courses');
-  };
-
-  const taskManager = [
-    { label: 'Attendance', value: '85%' },
-    { label: 'Daily Assessment', value: 'In Progress' },
-    { label: 'Performance', value: 'Good' },
-  ];
-
+export default function SubjectsPage() {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        height: '100vh', 
-        backgroundColor: '#FFF9F0', 
-        color: '#A367B1' 
+    <Box
+      sx={{
+        background: 'linear-gradient(135deg, #f5f7fa, #c3cfe2)', // Modern soft gradient background
+        minHeight: '100vh',
+        padding: 3,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      {/* Main Content */}
-      <Container 
-        maxWidth="lg" 
-        sx={{ 
-          flexGrow: 1, 
-          padding: 2 
-        }}
-      >
-        <Typography variant="h4" textAlign="center" gutterBottom>
-          Welcome to Maargdarshak
-        </Typography>
-
-        <Typography variant="h5" gutterBottom>
+      <Container maxWidth="lg">
+        <Typography
+          variant="h4"
+          textAlign="center"
+          gutterBottom
+          sx={{
+            color: '#2C3E50', // Dark modern text color
+            fontWeight: 'bold',
+            marginBottom: { xs: 2, sm: 4 },
+            background: 'linear-gradient(to right, #8e2de2, #4a00e0)', // Vibrant gradient text effect
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            animation: 'glow 1.5s ease-in-out infinite alternate', // Animated text glow
+            '@keyframes glow': {
+              from: { textShadow: '0 0 10px #fff, 0 0 20px #8e2de2, 0 0 30px #4a00e0' },
+              to: { textShadow: '0 0 20px #fff, 0 0 30px #8e2de2, 0 0 40px #4a00e0' },
+            },
+          }}
+        >
           Subjects
         </Typography>
-        <Grid container spacing={3}>
+
+        <Grid container spacing={4}>
           {subjects.map((subject, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Paper sx={{ padding: 3, borderRadius: 1, boxShadow: 2 }}>
-                <Typography variant="h6" component="h3">
+              <Paper
+                sx={{
+                  padding: { xs: 2, sm: 3 },
+                  borderRadius: '24px',
+                  boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.15)',
+                  background: 'linear-gradient(145deg, #e6e6e6, #ffffff)', // Modern subtle gradient
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  '&:hover': {
+                    boxShadow: '0px 15px 45px rgba(0, 0, 0, 0.3)',
+                    transform: 'translateY(-10px)',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  component="h3"
+                  sx={{
+                    textAlign: 'center',
+                    marginBottom: 2,
+                    color: '#34495e',
+                    fontWeight: '600',
+                    transition: 'color 0.3s ease',
+                    '&:hover': {
+                      color: '#8e2de2', // Color change on hover
+                    },
+                  }}
+                >
                   {subject.name}
                 </Typography>
-                <List>
-                  {subject.resources.map((resource, resourceIndex) => (
-                    <ListItem key={resourceIndex}>
-                      <ListItemText
-                        primary={
-                          <a
-                            href="#"
-                            style={{ color: '#e85f05', textDecoration: 'none' }}
-                          >
-                            {resource}
-                          </a>
-                        }
-                      />
-                    </ListItem>
+                <Grid container spacing={2}>
+                  {subject.resources.map((resource, resIndex) => (
+                    <Grid item xs={12} key={resIndex}>
+                      <Paper
+                        sx={{
+                          padding: 2,
+                          borderRadius: '16px',
+                          boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.1)',
+                          textAlign: 'center',
+                          cursor: 'pointer',
+                          background: '#f5f7fa', // Subtle background for resources
+                          transition: 'transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease',
+                          '&:hover': {
+                            boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.2)',
+                            transform: 'scale(1.1)',
+                            background: '#8e2de2', // Modern purple hover color
+                            color: '#ffffff',
+                          },
+                        }}
+                        aria-label={`Access ${resource} for ${subject.name}`}
+                      >
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: '500',
+                            letterSpacing: '0.5px',
+                          }}
+                        >
+                          {resource}
+                        </Typography>
+                      </Paper>
+                    </Grid>
                   ))}
-                </List>
+                </Grid>
               </Paper>
             </Grid>
           ))}
