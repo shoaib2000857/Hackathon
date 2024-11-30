@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@clerk/nextjs';
 import './NavBar.css';
 
 const NavBar = () => {
@@ -8,13 +10,16 @@ const NavBar = () => {
     top: 0,
     opacity: 0
   });
+  const router = useRouter();
+  const { signOut } = useAuth();
 
   const navButtons = [
-    { icon: 'palette', label: 'Dashboard' },
-    { icon: 'images', label: 'Chatbot' },
-    { icon: 'thumbtack', label: 'Formus' },
-    { icon: 'book', label: 'Subjects' }, // Added "Subjects"
-    { icon: 'chart-line', label: 'Logout' }
+    { icon: 'palette', label: 'Dashboard', onClick: () => router.push('/dashboard') },
+    { icon: 'images', label: 'Chatbot', onClick: () => router.push('/chatbot') },
+    { icon: 'thumbtack', label: 'Forums', onClick: () => router.push('/forums') },
+    { icon: 'heart', label: 'Notes', onClick: () => router.push('/notes') },
+    { icon: 'chart-line', label: 'Recommendations', onClick: () => router.push('/recommendations') },
+    { icon: 'sign-out-alt', label: 'Logout', onClick: async () => { await signOut(); router.push('/'); } }
   ];
 
   const handleMouseEnter = (event, index) => {
@@ -57,6 +62,7 @@ const NavBar = () => {
             className={`nav-button ${activeIndex === index ? 'active' : ''}`}
             onMouseEnter={(e) => handleMouseEnter(e, index)}
             onMouseLeave={handleMouseLeave}
+            onClick={button.onClick}
           >
             <i className={`fas fa-${button.icon}`} />
             <span>{button.label}</span>
