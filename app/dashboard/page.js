@@ -1,14 +1,14 @@
 'use client';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Box, Grid, Paper, Button } from '@mui/material';
 import axios from 'axios';
-import { useUser  } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
-  const [subjects, setSubjects] = React.useState([]);
+  const [subjects, setSubjects] = useState([]);
   const router = useRouter();
-  const { user } = useUser ();
+  const { user } = useUser();
 
   const fetchSubjects = async () => {
     try {
@@ -23,7 +23,7 @@ export default function Dashboard() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) {
       fetchSubjects();
     }
@@ -36,13 +36,13 @@ export default function Dashboard() {
   const taskManager = [
     { label: 'Attendance', value: '85%' },
     { label: 'Daily Assessment', value: 'In Progress' },
-    { label: 'Performance', value: 'Good' }
+    { label: 'Performance', value: 'Good' },
   ];
 
   return (
     <Box 
       sx={{ 
-        display: 'flex', // Use flexbox for layout
+        display: 'flex', 
         height: '100vh', 
         backgroundColor: '#FFF9F0', 
         color: '#A367B1' 
@@ -51,40 +51,52 @@ export default function Dashboard() {
       {/* Sidebar */}
       <Box 
         sx={{ 
-          width: '350px', // Set sidebar width
-          backgroundColor: '#FFF9F0', // Sidebar background
-          padding: 2 
+          width: '250px', 
+          backgroundColor: '#FFF9F0', 
+          padding: 2, 
+          boxShadow: 1 
         }}
-      ></Box>
+      >
+        <Typography variant="h6" gutterBottom align="center">
+          Maargdarshak
+        </Typography>
+      </Box>
 
       {/* Main Content */}
-      <Container maxWidth="lg" sx={{ flexGrow: 1, padding: 2, marginLeft: '0px' }}>
-        <Typography variant="h4" component="h1" gutterBottom align="center">
+      <Container 
+        maxWidth="lg" 
+        sx={{ 
+          flexGrow: 1, 
+          padding: 2 
+        }}
+      >
+        <Typography variant="h4" textAlign="center" gutterBottom>
           Welcome to Maargdarshak
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
-          <img src="logo.png" alt="Maargdarshak Logo" style={{ width: '80px', height: 'auto' }} />
-        </Box>
-        
-        <Typography variant="h5" component="h2" gutterBottom>
-          Announcements
-        </Typography>
-        <Paper sx={{ padding: 2, mb: 4, backgroundColor: '#f4f4f4', borderRadius: 1 }}>
-          <Typography>No new announcements</Typography>
-        </Paper>
 
-        <Typography variant="h5" component="h2" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           Subjects
         </Typography>
         <Grid container spacing={3}>
           {subjects.map((subject, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Paper sx={{ padding: 3, borderRadius: 1, boxShadow: 2 }}>
-                <Typography variant="h6" component="h3">{subject.name}</Typography>
+                <Typography variant="h6" component="h3">
+                  {subject.name}
+                </Typography>
                 <List>
-                  {subject.resources.map((resource, index) => (
-                    <ListItem key={index}>
-                      <ListItemText primary={<a href="#" style={{ color: '#e85f05', textDecoration: 'none' }}>{resource}</a>} />
+                  {subject.resources.map((resource, resourceIndex) => (
+                    <ListItem key={resourceIndex}>
+                      <ListItemText
+                        primary={
+                          <a
+                            href="#"
+                            style={{ color: '#e85f05', textDecoration: 'none' }}
+                          >
+                            {resource}
+                          </a>
+                        }
+                      />
                     </ListItem>
                   ))}
                 </List>
@@ -93,20 +105,20 @@ export default function Dashboard() {
           ))}
         </Grid>
 
-        <Typography variant="h5" component="h2" gutterBottom sx={{ mt: 4 }}>
+        <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
           Task Manager
         </Typography>
         <Paper sx={{ padding: 2, backgroundColor: '#f4f4f4', borderRadius: 1 }}>
           <List>
             {taskManager.map((task, index) => (
               <ListItem key={index}>
-                <ListItemText primary={`${task.label}: ${task.value }`} />
+                <ListItemText primary={`${task.label}: ${task.value}`} />
               </ListItem>
             ))}
           </List>
         </Paper>
 
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+        <Box textAlign="center" mt={4}>
           <Button variant="contained" color="primary" onClick={handleChangeCourses}>
             Change Courses
           </Button>
