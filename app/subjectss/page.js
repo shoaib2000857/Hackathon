@@ -92,20 +92,6 @@ export default function subjectss() {
             </Grid>
           ))}
         </Grid>
-
-        <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-          Task Manager
-        </Typography>
-        <Paper sx={{ padding: 2, backgroundColor: '#f4f4f4', borderRadius: 1 }}>
-          <List>
-            {taskManager.map((task, index) => (
-              <ListItem key={index}>
-                <ListItemText primary={`${task.label}: ${task.value}`} />
-              </ListItem>
-            ))}
-          </List>
-        </Paper>
-
         <Box textAlign="center" mt={4}>
           <Button variant="contained" color="primary" onClick={handleChangeCourses}>
             Change Courses
