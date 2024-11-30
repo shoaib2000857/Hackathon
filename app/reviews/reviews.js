@@ -17,7 +17,7 @@ const reviews = [
   },
   {
     name: "SIdharth Kulkarni",
-    username: "KMIT",
+    username: "IIT Hyderbad",
     body: "I love Maargdarshak, it is my go-to for anything college related",
     img: "https://avatar.vercel.sh/john",
   },
@@ -29,7 +29,7 @@ const reviews = [
   },
   {
     name: "PVS Abhiroop",
-    username: "KMIT",
+    username: "NIT Trichy",
     body: "The best LMS platform out there",
     img: "https://avatar.vercel.sh/jenny",
   },
