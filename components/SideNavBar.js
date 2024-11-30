@@ -13,7 +13,7 @@ const NavBar = () => {
     { icon: 'palette', label: 'Dashboard' },
     { icon: 'images', label: 'Chatbot' },
     { icon: 'thumbtack', label: 'Formus' },
-    { icon: 'heart', label: 'Notes' },
+    { icon: 'book', label: 'Subjects' }, // Added "Subjects"
     { icon: 'chart-line', label: 'Logout' }
   ];
 
