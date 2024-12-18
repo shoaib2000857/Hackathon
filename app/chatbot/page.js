@@ -104,13 +104,22 @@ export default function Chatbot() {
         }}
       />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-        <Button variant="contained" color="primary" onClick={handleSendMessage}>
-          Send
-        </Button>
-        <Button variant="contained" color="primary" onClick={handleClearChat} sx={{ backgroundColor: theme.palette.primary.main }}>
-          Clear Chat
-        </Button>
-      </Box>
+  <Button 
+    variant="contained" 
+    onClick={handleSendMessage} 
+    sx={{ backgroundColor: '#000000', color: '#ffffff', '&:hover': { backgroundColor: '#45A049' } }}
+  >
+    Send
+  </Button>
+  <Button 
+    variant="contained" 
+    onClick={handleClearChat} 
+    sx={{ backgroundColor: '#000000', color: '#ffffff', '&:hover': { backgroundColor: '#d32f2f' } }}
+  >
+    Clear Chat
+  </Button>
+</Box>
+
     </Container>
   );
 }

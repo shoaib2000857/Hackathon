@@ -1,0 +1,105 @@
+/* Compilers.css */
+
+.compiler-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 300px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .language-selector {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .language-selector label {
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+  
+  .language-selector select {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .code-editor {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    resize: vertical;
+    background-color: #fff;
+  }
+  
+  .compile-btn {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: black; /* Changed to black */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .compile-btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  .compile-btn:hover {
+    background-color: #333; /* Darker shade for hover */
+  }
+  
+  
+  .output-container {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .output, .error {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: pre-wrap;
+  }
+  
+  .output {
+    background-color: #d4edda;
+    border-left: 4px solid #28a745;
+  }
+  
+  .error {
+    background-color: #f8d7da;
+    border-left: 4px solid #dc3545;
+  }
+  
+  h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  

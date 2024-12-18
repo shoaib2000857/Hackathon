@@ -13,15 +13,19 @@ const NavBar = () => {
   const router = useRouter();
   const { signOut } = useAuth();
 
+  // Updated navButtons array with the added "Compilers" button
   const navButtons = [
     { icon: 'palette', label: 'Dashboard', onClick: () => router.push('/dashboard') },
-    { icon: 'images', label: 'Chatbot', onClick: () => router.push('/chatbot') },
-    { icon: 'thumbtack', label: 'Forums', onClick: () => router.push('/forums') },
-    { icon: 'heart', label: 'Notes', onClick: () => router.push('/notes') },
+    { icon: 'heart', label: 'Resources', onClick: () => router.push('/subjectss') },
+    // { icon: 'thumbtack', label: 'Forums', onClick: () => router.push('/forums') },
     { icon: 'chart-line', label: 'Recommendations', onClick: () => router.push('/recommendations') },
+    { icon: 'cogs', label: 'Compilers', onClick: () => router.push('/complier') },
+    { icon: 'images', label: 'Chatbot', onClick: () => router.push('/chatbot') },
+ // Added Compilers Button
     { icon: 'sign-out-alt', label: 'Logout', onClick: async () => { await signOut(); router.push('/'); } }
   ];
 
+  // Handle mouse enter for navigation highlighting
   const handleMouseEnter = (event, index) => {
     const { offsetTop, clientHeight } = event.currentTarget;
     setHighlightStyle({
@@ -32,6 +36,7 @@ const NavBar = () => {
     setActiveIndex(index);
   };
 
+  // Handle mouse leave for navigation highlighting
   const handleMouseLeave = () => {
     setHighlightStyle({
       top: 0,
@@ -48,6 +53,7 @@ const NavBar = () => {
         type="checkbox"
         checked={navToggle}
         onChange={() => setNavToggle(!navToggle)}
+        aria-label="Toggle Navigation"
       />
       
       <div id="nav-header">
@@ -63,6 +69,7 @@ const NavBar = () => {
             onMouseEnter={(e) => handleMouseEnter(e, index)}
             onMouseLeave={handleMouseLeave}
             onClick={button.onClick}
+            aria-label={button.label}
           >
             <i className={`fas fa-${button.icon}`} />
             <span>{button.label}</span>
