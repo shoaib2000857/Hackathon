@@ -215,11 +215,18 @@ const Dashboard = () => {
         </Typography>
         <Grid container spacing={3}>
           {subjectScores.map((subject, index) => (
+          {subjectScores.map((subject, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Paper sx={{ padding: 2, backgroundColor: '#f4f4f4', borderRadius: 1 }}>
                 <Typography variant="h6" textAlign="center" gutterBottom>
                   {subject.subject}
+              <Paper sx={{ padding: 2, backgroundColor: '#f4f4f4', borderRadius: 1 }}>
+                <Typography variant="h6" textAlign="center" gutterBottom>
+                  {subject.subject}
                 </Typography>
+                <Box sx={chartStyle}>
+                  <Bar data={subjectChartData(subject)} options={chartOptions} />
+                </Box>
                 <Box sx={chartStyle}>
                   <Bar data={subjectChartData(subject)} options={chartOptions} />
                 </Box>
