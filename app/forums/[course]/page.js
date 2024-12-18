@@ -1,4 +1,3 @@
-// app/forums/[course]/page.js
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
@@ -29,7 +28,7 @@ export default function Forum() {
 
   React.useEffect(() => {
     fetchMessages();
-  }, [course]);
+  }, [course, user]); // Add 'user' as a dependency
 
   const handleSendMessage = async () => {
     if (input.trim() === '') return;

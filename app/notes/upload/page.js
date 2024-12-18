@@ -1,4 +1,3 @@
-// app/notes/upload/page.js
 'use client';
 import * as React from 'react';
 import { Container, Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
@@ -32,7 +31,7 @@ export default function UploadNote() {
     if (user) {
       fetchCourses();
     }
-  }, [user]);
+  }, [user]); // Add 'user' as a dependency
 
   const handleUploadNote = async () => {
     try {

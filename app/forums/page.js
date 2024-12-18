@@ -1,4 +1,3 @@
-// app/forums/page.js
 'use client';
 import * as React from 'react';
 import { Container, Typography, List, ListItem, ListItemText } from '@mui/material';
@@ -25,8 +24,10 @@ export default function Forums() {
   };
 
   React.useEffect(() => {
-    fetchCourses();
-  }, []);
+    if (user) {
+      fetchCourses();
+    }
+  }, [user]); // Add 'user' as a dependency
 
   const handleForumClick = (course) => {
     router.push(`/forums/${course}`);

@@ -48,7 +48,7 @@ export default function Recommendations() {
     if (user) {
       fetchSubjects();
     }
-  }, [user]);
+  }, [user]); // Add 'user' as a dependency
 
   const handleRecommend = async () => {
     setError('');

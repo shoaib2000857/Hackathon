@@ -1,4 +1,3 @@
-// app/notes/page.js
 'use client';
 import * as React from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
@@ -28,7 +27,7 @@ export default function Notes() {
     if (user) {
       fetchNotes();
     }
-  }, [user]);
+  }, [user]); // Add 'user' as a dependency
 
   const handleUploadPage = () => {
     router.push('/notes/upload');
