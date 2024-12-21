@@ -1,3 +1,4 @@
+// app/layout.js
 'use client';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';

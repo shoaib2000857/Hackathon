@@ -48,7 +48,7 @@ export default function App() {
             <FadeTextDemo />
             {/* Add some margin-top to give space between the text and button */}
             <div style={{ marginTop: "200px", zIndex: 2 }}>
-            <RainbowButton onClick={handleSignup}>Let's Sign in</RainbowButton>;
+            <RainbowButton onClick={handleSignup}>Let&apos;s Sign in</RainbowButton>;
             </div>
           </div>
         </div>
