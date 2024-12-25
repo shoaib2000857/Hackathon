@@ -13,15 +13,15 @@ const NavBar = () => {
   const router = useRouter();
   const { signOut } = useAuth();
 
-  // Updated navButtons array with the added "Compilers" button
+  // Updated navButtons array with the added "Compilers" and "Notes" buttons
   const navButtons = [
     { icon: 'palette', label: 'Dashboard', onClick: () => router.push('/dashboard') },
-    { icon: 'heart', label: 'Resources', onClick: () => router.push('/subjectss') },
+    { icon: 'heart', label: 'Resources', onClick: () => router.push('/subjects') },
     // { icon: 'thumbtack', label: 'Forums', onClick: () => router.push('/forums') },
     { icon: 'chart-line', label: 'Recommendations', onClick: () => router.push('/recommendations') },
     { icon: 'cogs', label: 'Compilers', onClick: () => router.push('/complier') },
     { icon: 'images', label: 'Chatbot', onClick: () => router.push('/chatbot') },
- // Added Compilers Button
+    { icon: 'book', label: 'Notes', onClick: () => router.push('/notes') }, // Added Notes Button
     { icon: 'sign-out-alt', label: 'Logout', onClick: async () => { await signOut(); router.push('/'); } }
   ];
 

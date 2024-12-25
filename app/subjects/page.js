@@ -22,6 +22,7 @@ export default function SubjectsPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingLeft: '250px', // Adjust padding to account for the navbar width
       }}
     >
       <Container maxWidth="lg">
@@ -43,8 +44,7 @@ export default function SubjectsPage() {
             },
           }}
         >
-          
-          
+          Subjects
         </Typography>
 
         <Grid container spacing={4}>

@@ -142,9 +142,10 @@ const Dashboard = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
+        minHeight: '100vh',
         backgroundColor: '#FFF9F0',
         color: '#A367B1',
+        paddingLeft: '250px', // Ensure content is not behind the SideNavBar
       }}
     >
       {/* Profile Section in the Top Right */}
@@ -172,6 +173,7 @@ const Dashboard = () => {
           alignItems: 'center',
           padding: 2,
           flexGrow: 1,
+          backgroundColor: '#FFF9F0', // Ensure background color is consistent
         }}
       >
         <Typography variant="h4" textAlign="center">
@@ -179,7 +181,7 @@ const Dashboard = () => {
         </Typography>
       </Box>
 
-      <Container maxWidth="lg" sx={{ flexGrow: 1, padding: 2 }}>
+      <Container maxWidth="lg" sx={{ flexGrow: 1, padding: 2, backgroundColor: '#FFF9F0' }}>
         <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
           Attendance
         </Typography>
